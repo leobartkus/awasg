@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbb2r78x4rfxy"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_sx1yc"]
+[ext_resource type="Shader" path="res://DamageFlash.gdshader" id="2_81u7d"]
+[ext_resource type="Script" path="res://hp.gd" id="3_14pic"]
+[ext_resource type="Script" path="res://unique_material.gd" id="3_d0t64"]
+[ext_resource type="Script" path="res://ns.gd" id="4_il82t"]
+[ext_resource type="Script" path="res://slow_rotate_AI.gd" id="5_76cg7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4g1e1"]
+shader = ExtResource("2_81u7d")
+shader_parameter/solid_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0e0mr"]
+load_path = "res://.godot/imported/algae1.png-77b103d97855fe3c008132f225170b2e.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyymb"]
+size = Vector2(505, 29)
+
+[node name="Algae" type="CharacterBody2D"]
+position = Vector2(458, 248)
+script = ExtResource("1_sx1yc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4g1e1")
+texture = SubResource("CompressedTexture2D_0e0mr")
+script = ExtResource("3_d0t64")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_oyymb")
+
+[node name="HP_Tracker" type="Node" parent="."]
+script = ExtResource("3_14pic")
+
+[node name="NomSpawner6" type="Node2D" parent="."]
+position = Vector2(-237, 0)
+script = ExtResource("4_il82t")
+
+[node name="NomSpawner5" type="Node2D" parent="."]
+position = Vector2(-184, 0)
+script = ExtResource("4_il82t")
+
+[node name="NomSpawner7" type="Node2D" parent="."]
+position = Vector2(220, 0)
+script = ExtResource("4_il82t")
+
+[node name="NomSpawner4" type="Node2D" parent="."]
+position = Vector2(-129, 1)
+script = ExtResource("4_il82t")
+
+[node name="NomSpawner8" type="Node2D" parent="."]
+position = Vector2(-59, 0)
+script = ExtResource("4_il82t")
+
+[node name="NomSpawner3" type="Node2D" parent="."]
+script = ExtResource("4_il82t")
+
+[node name="NomSpawner9" type="Node2D" parent="."]
+position = Vector2(55, 0)
+script = ExtResource("4_il82t")
+
+[node name="NomSpawner2" type="Node2D" parent="."]
+position = Vector2(128, -1)
+script = ExtResource("4_il82t")
+
+[node name="NomSpawner" type="Node2D" parent="."]
+position = Vector2(178, 0)
+script = ExtResource("4_il82t")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("5_76cg7")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://omte57t0a3sm"]
+
+[ext_resource type="Script" path="res://ai_chase_player.gd" id="1_sqfbg"]
+
+[node name="AI_Chase_Player" type="Node2D"]
+script = ExtResource("1_sqfbg")

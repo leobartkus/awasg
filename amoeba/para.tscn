@@ -1,0 +1,41 @@
+[gd_scene load_steps=10 format=3 uid="uid://cit27usktohge"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_yqiha"]
+[ext_resource type="Shader" path="res://DamageFlash.gdshader" id="2_i7qd5"]
+[ext_resource type="Texture2D" uid="uid://c6p0uhktei32e" path="res://paramecium.png" id="3_cccfp"]
+[ext_resource type="Script" path="res://unique_material.gd" id="4_6mpy4"]
+[ext_resource type="Script" path="res://ns.gd" id="4_u6dxe"]
+[ext_resource type="Script" path="res://hp.gd" id="5_y0bx0"]
+[ext_resource type="Script" path="res://para_AI.gd" id="6_3e67d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufnfb"]
+shader = ExtResource("2_i7qd5")
+shader_parameter/solid_color = null
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g5wne"]
+radius = 7.0
+height = 24.0
+
+[node name="Para" type="CharacterBody2D"]
+position = Vector2(651, 101)
+script = ExtResource("1_yqiha")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ufnfb")
+rotation = 1.57176
+texture = ExtResource("3_cccfp")
+script = ExtResource("4_6mpy4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, 0)
+rotation = 1.56966
+shape = SubResource("CapsuleShape2D_g5wne")
+
+[node name="NomSpawner" type="Node2D" parent="."]
+script = ExtResource("4_u6dxe")
+
+[node name="HP_Tracker" type="Node" parent="."]
+script = ExtResource("5_y0bx0")
+
+[node name="AI" type="Node" parent="."]
+script = ExtResource("6_3e67d")

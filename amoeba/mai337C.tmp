@@ -1,0 +1,76 @@
+[gd_scene load_steps=16 format=3 uid="uid://d2f51bq44vxjs"]
+
+[ext_resource type="PackedScene" uid="uid://fooe8er50ch4" path="res://splat.tscn" id="1_1myov"]
+[ext_resource type="Script" path="res://player.gd" id="1_gq48p"]
+[ext_resource type="Texture2D" uid="uid://b2osycidinkty" path="res://amoeba.png" id="1_vwl56"]
+[ext_resource type="Texture2D" uid="uid://cnqfdbfk3ku2a" path="res://shotgun.png" id="2_ikiaq"]
+[ext_resource type="Script" path="res://crosshair.gd" id="4_pvr7c"]
+[ext_resource type="Texture2D" uid="uid://b1c6ksqah84lc" path="res://crosshair.png" id="5_d4ne7"]
+[ext_resource type="Shader" path="res://DamageFlash.gdshader" id="6_bvh2b"]
+[ext_resource type="Texture2D" uid="uid://cwukdkuvmk1yv" path="res://virus.png" id="6_f00jy"]
+[ext_resource type="Script" path="res://ai_chase_player.gd" id="7_scbga"]
+[ext_resource type="Script" path="res://hp.gd" id="8_v67hi"]
+[ext_resource type="PackedScene" uid="uid://b8ostwg3ererf" path="res://bullet.tscn" id="9_nocq5"]
+[ext_resource type="PackedScene" uid="uid://binv1xc21g2t6" path="res://nom.tscn" id="12_ilkce"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xnjgk"]
+radius = 29.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0sec4"]
+shader = ExtResource("6_bvh2b")
+shader_parameter/solid_color = null
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5k6tb"]
+radius = 23.1948
+
+[node name="root" type="Node2D"]
+
+[node name="splat" parent="." instance=ExtResource("1_1myov")]
+
+[node name="crosshair" type="Node2D" parent="."]
+script = ExtResource("4_pvr7c")
+
+[node name="Sprite2D" type="Sprite2D" parent="crosshair"]
+texture = ExtResource("5_d4ne7")
+
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("crosshair")]
+unique_name_in_owner = true
+position = Vector2(324, 193)
+script = ExtResource("1_gq48p")
+crosshair = NodePath("../crosshair")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_vwl56")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CircleShape2D_xnjgk")
+
+[node name="shotgun" type="Node2D" parent="Player"]
+
+[node name="shotgun_sprite" type="Sprite2D" parent="Player/shotgun"]
+position = Vector2(6, 1)
+texture = ExtResource("2_ikiaq")
+offset = Vector2(14.61, 0)
+
+[node name="tip" type="Node2D" parent="Player/shotgun"]
+position = Vector2(46, -2)
+
+[node name="virus" type="CharacterBody2D" parent="."]
+position = Vector2(458, 248)
+
+[node name="Sprite2D" type="Sprite2D" parent="virus"]
+material = SubResource("ShaderMaterial_0sec4")
+texture = ExtResource("6_f00jy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="virus"]
+shape = SubResource("CircleShape2D_5k6tb")
+
+[node name="AI_Chase_Player" type="Node2D" parent="virus"]
+script = ExtResource("7_scbga")
+
+[node name="HP" type="Node2D" parent="virus"]
+script = ExtResource("8_v67hi")
+
+[node name="Bullet" parent="." instance=ExtResource("9_nocq5")]
+
+[node name="nom" parent="." instance=ExtResource("12_ilkce")]

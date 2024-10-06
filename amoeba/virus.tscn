@@ -1,0 +1,37 @@
+[gd_scene load_steps=10 format=3 uid="uid://4vuub1ds7inx"]
+
+[ext_resource type="Shader" path="res://DamageFlash.gdshader" id="1_nx1m2"]
+[ext_resource type="Script" path="res://Enemy.gd" id="1_xw0nm"]
+[ext_resource type="PackedScene" uid="uid://omte57t0a3sm" path="res://ai_chase_player.tscn" id="3_1w5y6"]
+[ext_resource type="Script" path="res://unique_material.gd" id="3_pntb7"]
+[ext_resource type="Script" path="res://hp.gd" id="4_q8tr8"]
+[ext_resource type="PackedScene" uid="uid://bod8ljk66586y" path="res://NomSpawner.tscn" id="5_tx2bf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cor0i"]
+shader = ExtResource("1_nx1m2")
+shader_parameter/solid_color = null
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2ix0u"]
+load_path = "res://.godot/imported/virus.png-aa841d803fd38961238c926af45297be.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5k6tb"]
+radius = 23.1948
+
+[node name="virus" type="CharacterBody2D"]
+position = Vector2(458, 248)
+script = ExtResource("1_xw0nm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_cor0i")
+texture = SubResource("CompressedTexture2D_2ix0u")
+script = ExtResource("3_pntb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5k6tb")
+
+[node name="AI_Chase_Player" parent="." instance=ExtResource("3_1w5y6")]
+
+[node name="NS" parent="." instance=ExtResource("5_tx2bf")]
+
+[node name="HP_Tracker" type="Node" parent="."]
+script = ExtResource("4_q8tr8")

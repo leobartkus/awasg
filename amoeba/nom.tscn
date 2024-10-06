@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://binv1xc21g2t6"]
+
+[ext_resource type="Script" path="res://nom.gd" id="1_f8v3n"]
+[ext_resource type="Texture2D" uid="uid://b4rp0uiryogpu" path="res://nom.png" id="1_sv2xj"]
+[ext_resource type="Script" path="res://velocity_mover.gd" id="2_72hmm"]
+[ext_resource type="Script" path="res://rotate_mover.gd" id="3_0ek1v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wj0xq"]
+radius = 7.0
+
+[node name="nom" type="Area2D"]
+script = ExtResource("1_f8v3n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sv2xj")
+
+[node name="VelocityMover" type="Node" parent="."]
+script = ExtResource("2_72hmm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wj0xq")
+
+[node name="RotateMover" type="Node" parent="."]
+script = ExtResource("3_0ek1v")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

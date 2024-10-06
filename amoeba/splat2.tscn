@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bi0xi2h7xrait"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jn3xm"]
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 9.35
+initial_velocity_max = 44.04
+gravity = Vector3(0, 0, 0)
+damping_min = 17.151
+damping_max = 36.068
+
+[node name="splat" type="GPUParticles2D"]
+position = Vector2(89, 50)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_jn3xm")
